@@ -21,3 +21,9 @@ yarn create electron-app my-app
 ```sh
 vue add electron-builder # in your vue-cli4-app
 ```
+
+### [React+Webpack](./electron-forge-ts-webpack-app)
+
+```sh
+yarn create electron-app my-new-app --template=typescript-webpack
+```
