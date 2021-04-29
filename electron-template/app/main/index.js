@@ -3,6 +3,7 @@ const handleIPC = require('./ipc')
 const isDev = require('electron-is-dev')
 const { create: createMainWindow, show: showMainWindow, close: closeMainWindow } = require('./windows/main')
 
+if (require('electron-squirrel-startup')) app.quit() // window 更新
 const single = app.requestSingleInstanceLock()
 if (!single) {
   app.quit()
@@ -15,7 +16,7 @@ if (!single) {
     if (!isDev) {
       require('./updater.js') //更新服务
     }
-    require('./crash-reporter').init()
+    require('./crash-reporter').init() // 崩溃监控
   })
   app.on('ready', () => {
     createMainWindow()

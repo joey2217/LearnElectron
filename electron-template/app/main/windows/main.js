@@ -13,7 +13,13 @@ function create() {
       nodeIntegration: true,
       contextIsolation: false,
       enableRemoteModule: true
-    }
+    },
+    show:false,
+    backgroundColor:'#ccc'
+  })
+
+  win.on('ready-to-show',()=>{
+    win.show()
   })
 
   // 窗口假关闭

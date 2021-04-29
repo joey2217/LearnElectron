@@ -10,8 +10,8 @@
     "start:render": "cd app/renderer/src/main && yarn start",
     "start:render-vue": "cd app/renderer/src/vue-page && yarn dev",
     "build": "cd app/renderer/src/main && yarn build",
-    "pack:mac":"yarn build && cross-env NPM_CONFIG_ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/ electron-builder build --mac",
-    "pack:win":"yarn build && cross-env NPM_CONFIG_ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/ electron-builder build --win --ia32",
+    "pack:mac": "yarn build && cross-env NPM_CONFIG_ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/ electron-builder build --mac",
+    "pack:win": "yarn build && cross-env NPM_CONFIG_ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/ electron-builder build --win --ia32",
     "postinstall": "electron-builder install-app-deps",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -28,7 +28,8 @@
   },
   "dependencies": {
     "about-window": "^1.14.0",
-    "electron-is-dev": "^2.0.0"
+    "electron-is-dev": "^2.0.0",
+    "electron-squirrel-startup": "^1.0.0"
   },
   "build": {
     "appId": "com.joey",
