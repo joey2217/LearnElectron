@@ -1,5 +1,14 @@
 <template>
     <img alt="Vue logo" src="./assets/logo.png" />
+      <ul>
+    <li>
+      <router-link to="/">Home</router-link>
+    </li>
+    <li>
+      <router-link to="/about">About</router-link>
+    </li>
+  </ul>
+  <router-view />
     <h1 @contextmenu="onContextMenu">{{ msgRef }}</h1>
 </template>
 

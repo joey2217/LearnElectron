@@ -49,6 +49,6 @@ function setAppMenu() {
 }
 
 app.whenReady().then(() => {
-  setTray()
+  // setTray()
   setAppMenu()
 })
