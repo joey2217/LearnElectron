@@ -1,0 +1,150 @@
+{
+  "name": "electron-webpack-boilerplate",
+  "version": "1.0.0",
+  "description": "An Electron boilerplate including TypeScript, React, ESLint...",
+  "main": "./dist/main.js",
+  "scripts": {
+    "dev": "npm-run-all -p dev:render main:serve",
+    "dev:main": "cross-env NODE_ENV=development webpack --config config/webpack.main.js --mode development && npm run start:main",
+    "dev:render": "cross-env NODE_ENV=development webpack-dev-server --config config/webpack.render.js --mode development",
+    "main:serve": "wait-on http-get://localhost:4000/ && npm run dev:main",
+    "start:main": "electron .",
+    "build": "npm-run-all build:main build:render",
+    "build:run": "npm-run-all build start:main",
+    "build:main": "webpack --config config/webpack.main.js --mode production",
+    "build:render": "webpack --config config/webpack.render.js --mode production",
+    "package": "npm-run-all build package:dist",
+    "package:dist": "electron-builder --dir",
+    "test": "jest"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "build": {
+    "appId": "com.joey",
+    "productName": "ElectronTemplate",
+    "files": [
+      "package.json",
+      "dist/**"
+    ],
+    "asar": true,
+    "directories": {
+      "buildResources": "resource",
+      "output": "release"
+    },
+    "copyright": "Copyright © 2020 Joey",
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "icon": "resources/icon.icns"
+    },
+    "dmg": {
+      "background": "resources/background.png",
+      "window": {
+        "width": 540,
+        "height": 380
+      },
+      "contents": [
+        {
+          "x": 410,
+          "y": 180,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 180,
+          "type": "file"
+        }
+      ],
+      "iconSize": 128
+    },
+    "win": {
+      "icon": "resources/icon.ico",
+      "target": [
+        "squirrel",
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "language": "2052",
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true
+    },
+    "squirrelWindows": {
+      "iconUrl": "https://www.electronjs.org/images/favicon.b7a59262df48d6563400baf5671da548.ico"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix"
+    ]
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
+    "@babel/preset-typescript": "^7.9.0",
+    "@commitlint/cli": "^9.0.1",
+    "@commitlint/config-conventional": "^9.0.1",
+    "@commitlint/core": "^9.0.1",
+    "@testing-library/jest-dom": "^5.11.0",
+    "@testing-library/react": "^10.4.3",
+    "@types/electron-devtools-installer": "^2.2.0",
+    "@types/jest": "^26.0.3",
+    "@types/node": "^15.12.1",
+    "@types/react": "^17.0.9",
+    "@types/react-dom": "^17.0.6",
+    "@types/styled-components": "^5.1.9",
+    "@typescript-eslint/eslint-plugin": "^3.4.0",
+    "@typescript-eslint/parser": "^3.4.0",
+    "babel-loader": "^8.1.0",
+    "commitizen": "^4.1.2",
+    "cross-env": "^7.0.2",
+    "cz-conventional-changelog": "3.2.0",
+    "electron": "^13.1.1",
+    "electron-builder": "^22.10.5",
+    "electron-devtools-installer": "^3.2.0",
+    "eslint": "^7.3.1",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-import-resolver-typescript": "^2.0.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.20.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "html-webpack-plugin": "^5.3.1",
+    "husky": "^4.2.5",
+    "jest": "^26.1.0",
+    "lint-staged": "^10.2.11",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.0.5",
+    "ts-jest": "^26.1.1",
+    "typescript": "^3.9.5",
+    "wait-on": "^5.0.1",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
