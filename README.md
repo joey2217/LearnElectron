@@ -6,6 +6,28 @@
 ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/ npm install -D electron
 ```
 
+## script
+
+- create-react-app
+
+```json
+"scripts": {
+    "start": "cross-env BROWSER=none react-scripts start",
+}
+```
+
+- app
+
+```sh
+yarn add -D concurrently wait-on
+```
+
+```json
+"scripts": {
+    "start": "concurrently \"npm run start:render\" \"wait-on http://localhost:3000 && npm run start:main\" ",
+}
+```
+
 ## boilerplates
 
 ### [electron-forge](https://www.electronforge.io/)
