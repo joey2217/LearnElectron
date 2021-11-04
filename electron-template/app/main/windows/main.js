@@ -1,9 +1,9 @@
-const { BrowserWindow } = require('electron')
-const isDev = require('electron-is-dev') 
-const path = require('path')
+const { BrowserWindow,app } = require("electron");
+const isDev = require("electron-is-dev");
+const path = require("path");
 
-let win
-let willQuitApp = false
+let win;
+let willQuitApp = false;
 
 function create() {
   win = new BrowserWindow({
@@ -12,44 +12,51 @@ function create() {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
-      enableRemoteModule: true
+      enableRemoteModule: true,
     },
-    show:false,
-    backgroundColor:'#ccc'
-  })
+    show: false,
+    backgroundColor: "#ccc",
+  });
 
-  win.on('ready-to-show',()=>{
-    win.show()
-  })
+  win.on("ready-to-show", () => {
+    win.show();
+  });
 
   // 窗口假关闭
-  win.on('close', (e) => {
+  win.on("close", (e) => {
     if (willQuitApp) {
-      win = null
+      win = null;
     } else {
-      e.preventDefault()
-      win.hide()
+      e.preventDefault();
+      win.hide();
     }
-  })
+  });
+
+  // win.webContents.session.on("will-download", (e, downItem, webContents) => {
+  //   downItem.setSavePath(app.getPath("downloads"));
+  //   console.log("will-download");
+  // });
 
   if (isDev) {
-    win.loadURL('http://localhost:3000')
+    win.loadURL("http://localhost:3000");
   } else {
-    win.loadFile(path.resolve(__dirname, '../../renderer/pages/main/index.html'))
+    win.loadFile(
+      path.resolve(__dirname, "../../renderer/pages/main/index.html")
+    );
   }
 }
 
 function send(channel, ...args) {
-  win.webContents.send(channel, ...args)
+  win.webContents.send(channel, ...args);
 }
 
 function show() {
-  win.show()
+  win.show();
 }
 
 function close() {
-  willQuitApp = true
-  win.close()
+  willQuitApp = true;
+  win.close();
 }
 
-module.exports = { create, send, show, close }
+module.exports = { create, send, show, close };

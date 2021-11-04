@@ -1,6 +1,6 @@
 <template>
-    <img alt="Vue logo" src="./assets/logo.png" />
-      <ul>
+  <button @click="down">download</button>
+  <ul>
     <li>
       <router-link to="/">Home</router-link>
     </li>
@@ -8,13 +8,15 @@
       <router-link to="/about">About</router-link>
     </li>
   </ul>
+  <h2>globalShortcut Demo</h2>
   <router-view />
-    <h1 @contextmenu="onContextMenu">{{ msgRef }}</h1>
+  <h1 @contextmenu="onContextMenu">{{ msgRef }}</h1>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-const { ipcRenderer,remote } = window.require("electron");
+import mitter from "./utils/event";
+const { ipcRenderer, remote } = window.require("electron");
 const { Menu, MenuItem } = remote;
 
 export default defineComponent({
@@ -26,6 +28,9 @@ export default defineComponent({
     ipcRenderer.on("reply", (e, msg) => {
       console.log("on reply", msg);
       msgRef.value = msg;
+    });
+    ipcRenderer.on("cut", () => {
+      mitter.emit("cut");
     });
     const onContextMenu = (e) => {
       e.preventDefault();
@@ -44,6 +49,9 @@ export default defineComponent({
     return {
       msgRef,
       onContextMenu,
+      down:()=>{
+        ipcRenderer.invoke('down')
+      }
     };
   },
 });
@@ -60,6 +68,4 @@ export default defineComponent({
 }
 </style>
 
-function ref(arg0: string) {
-  throw new Error("Function not implemented.");
-}
+function ref(arg0: string) { throw new Error("Function not implemented."); }

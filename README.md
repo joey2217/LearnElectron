@@ -16,6 +16,30 @@ ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/ npm install -D electron
 }
 ```
 
+- config
+
+[craco config](https://github.com/gsoft-inc/craco/blob/master/packages/craco/README.md#configuration-file)
+
+```sh
+yarn add @craco/craco
+```
+
+```json
+/* package.json */
+"scripts": {
+   "start": "craco start",
+   "build": "craco build",
+   "test": "craco test",
+}
+```
+
+```js
+/* craco.config.js */
+module.exports = {
+  // ...
+};
+```
+
 - app
 
 ```sh

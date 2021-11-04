@@ -22,6 +22,7 @@ if (!single) {
     createMainWindow()
     handleIPC()
     require('./trayAndMenu')
+    require('./shortcut')
   })
 
   app.on('before-quit', () => {
