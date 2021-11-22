@@ -2,6 +2,7 @@ import { app } from 'electron'
 import { create as createMainWindow } from './windows/main'
 
 const gotTheLock = app.requestSingleInstanceLock()
+console.log('234');
 
 if (!gotTheLock) {
   app.quit()

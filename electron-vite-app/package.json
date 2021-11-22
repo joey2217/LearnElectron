@@ -4,11 +4,9 @@
   "description": "",
   "main": "dist/main/index.cjs",
   "scripts": {
-    "package": "npm run build",
-    "dev": "npm run dev:renderer && npm run dev:main",
-    "dev:main": "vite build src/main --mode development --watch && electron .",
-    "dev:renderer": "npm run dev:renderer-main",
-    "dev:renderer-main": "vite src/renderer/main",
+    "pack": "npm run build",
+    "build": "node scripts/build.js",
+    "dev": "node scripts/dev.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

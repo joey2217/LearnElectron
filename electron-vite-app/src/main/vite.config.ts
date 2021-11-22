@@ -7,6 +7,7 @@ const ROOT = path.resolve(__dirname, '../../')
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
+  console.log(mode,'mode');
   return {
     root: __dirname,
     envDir: process.cwd(),
@@ -15,10 +16,6 @@ export default defineConfig(({ mode }) => {
       target: `node${versions.node}`,
       outDir: path.join(ROOT, 'dist', 'main'),
       assetsDir: '.',
-      watch: {
-        buildDelay: 2000,
-        include: path.join(__dirname, 'src')
-      },
       lib: {
         entry: 'src/index.ts',
         formats: ['cjs'],
