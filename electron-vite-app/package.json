@@ -1,0 +1,31 @@
+{
+  "name": "electron-vite-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/main/index.cjs",
+  "scripts": {
+    "package": "npm run build",
+    "dev": "npm run dev:renderer && npm run dev:main",
+    "dev:main": "vite build src/main --mode development --watch && electron .",
+    "dev:renderer": "npm run dev:renderer-main",
+    "dev:renderer-main": "vite src/renderer/main",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "browserslist": [
+    "Chrome 96"
+  ],
+  "dependencies": {
+    "vue": "^3.2.22"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.9.4",
+    "cross-env": "^7.0.3",
+    "electron": "^16.0.1",
+    "typescript": "^4.5.2",
+    "vite": "^2.6.14",
+    "vue-tsc": "^0.29.6"
+  }
+}
