@@ -4,16 +4,17 @@
   "description": "description",
   "main": "dist/main/index.cjs",
   "scripts": {
-    "pack": "cross-env NPM_CONFIG_ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/ ELECTRON_BUILDER_BINARIES_MIRROR=http://npm.taobao.org/mirrors/electron-builder-binaries/  electron-builder build --config electron-builder.config.js --dir",
-    "prepack": "npm run build",
+    "pack:win": "npm run build && electron-builder build --config electron-builder.config.js --win",
+    "pack:mac": "npm run build && electron-builder build --config electron-builder.config.js --mac",
     "dev": "node scripts/dev.js",
     "build": "npm run check && node scripts/build.js",
     "check": "npm run check:main && npm run check:renderer:main",
     "check:main": "tsc --noEmit -p src/main/tsconfig.json",
-    "check:renderer:main": "vue-tsc --noEmit -p src/renderer/main/tsconfig.json"
+    "check:renderer:main": "vue-tsc --noEmit -p src/renderer/main/tsconfig.json",
+    "postinstall": "electron-builder install-app-deps"
   },
   "keywords": [],
-  "author": "",
+  "author": "Joey",
   "license": "ISC",
   "browserslist": [
     "Chrome 96"
