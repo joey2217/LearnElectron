@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { builtinModules } from 'module';
-import * as path from "path";
-import { versions } from '../../../electron-vendors.config';
+import { builtinModules } from 'module'
+import * as path from 'path'
+import { versions } from '../../../electron-vendors.config'
 
 const ROOT = path.resolve(__dirname, '../../../')
 
@@ -16,10 +16,7 @@ export default defineConfig({
     target: `chrome${versions.chrome}`,
     outDir: path.join(ROOT, 'dist/renderer/main'),
     rollupOptions: {
-      external: [
-        'electron',
-        ...builtinModules,
-      ],
+      external: ['electron', ...builtinModules],
     },
     emptyOutDir: true,
   },

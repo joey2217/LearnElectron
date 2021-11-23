@@ -1,13 +1,12 @@
 import { defineConfig } from 'vite'
-import { builtinModules } from 'module';
+import { builtinModules } from 'module'
 import * as path from 'path'
-import { versions } from '../../electron-vendors.config';
-
-const ROOT = path.resolve(__dirname, '../../')
+import { versions } from '../../electron-vendors.config'
+import { ROOT } from '../common/constant'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  console.log(mode,'mode');
+  console.log(mode, 'mode')
   return {
     root: __dirname,
     envDir: process.cwd(),
@@ -15,22 +14,18 @@ export default defineConfig(({ mode }) => {
       sourcemap: 'inline',
       target: `node${versions.node}`,
       outDir: path.join(ROOT, 'dist', 'main'),
-      assetsDir: '.',
       lib: {
         entry: 'src/index.ts',
         formats: ['cjs'],
       },
       minify: mode !== 'development',
       rollupOptions: {
-        external: [
-          'electron',
-          ...builtinModules,
-        ],
+        external: ['electron', ...builtinModules],
         output: {
-          entryFileNames: '[name].cjs'
-        }
+          entryFileNames: '[name].cjs',
+        },
       },
       emptyOutDir: true,
-    }
+    },
   }
 })

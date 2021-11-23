@@ -3,13 +3,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "/@/*": [
-        "./src/*"
-      ]
-    },
+      "/@/*": ["./src/*"]
+    }
   },
-  "include": [
-    "src/**/*",
-    "../../types/**/*.d.ts"
-  ]
+  "include": ["src/**/*", "../common", "../../types/**/*.d.ts"]
 }
