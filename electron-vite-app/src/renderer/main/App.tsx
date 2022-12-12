@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { openAboutWindow, toggleDevtools } from './electronAPI'
 import './App.css'
 
 function App() {
@@ -11,13 +12,9 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <button onClick={openAboutWindow}>openAboutWindow</button>
+      <button onClick={toggleDevtools}>toggleDevtools</button>
     </div>
   )
 }

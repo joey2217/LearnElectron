@@ -7,7 +7,7 @@ export function loadDevTools() {
   // on windows
   const vueDevToolsPath = path.join(
     os.homedir(),
-    "/AppData/Local/Google/Chrome/User Data/Default/Extensions/ljjemllljcmogpfapbkkighbhhppjdbg/6.0.0.20_0"
+    "/AppData/Local/Google/Chrome/User Data/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/4.27.1_0"
   );
   app.whenReady().then(async () => {
     try {

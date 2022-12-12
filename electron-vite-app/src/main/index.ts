@@ -4,6 +4,7 @@ import {
   create as createMainWindow,
   focus as focusMainWindow,
 } from './windows/main'
+import handleIPC from './ipc'
 
 const gotTheLock = app.requestSingleInstanceLock()
 
@@ -16,9 +17,17 @@ if (!gotTheLock) {
   })
   app.whenReady().then(() => {
     createMainWindow()
+    handleIPC()
   })
 }
 
 if (import.meta.env.DEV) {
   loadDevTools()
 }
+if (import.meta.env.PROD) {
+  app.applicationMenu = null
+}
+
+app.on('window-all-closed', function () {
+  if (process.platform !== 'darwin') app.quit()
+})

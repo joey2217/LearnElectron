@@ -7,9 +7,14 @@ export function create() {
   win = new BrowserWindow({
     width: 800,
     height: 500,
+    show:false,
     webPreferences: {
-      preload: './preload.cjs',
+      sandbox: false, // add this
+      preload: path.join(__dirname,'preload.js'),
     },
+  })
+  win.on('ready-to-show',()=>{
+    win.show()
   })
   if (import.meta.env.DEV) {
     win.loadURL('http://localhost:5174')
@@ -23,4 +28,8 @@ export function focus() {
     if (win.isMinimized()) win.restore()
     win.focus()
   }
+}
+
+export function toggleDevtools(){
+  win.webContents.toggleDevTools()
 }

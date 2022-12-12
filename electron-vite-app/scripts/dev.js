@@ -39,8 +39,9 @@ function startElectron() {
     // windows 上，不支持 signal 参数
     electronProcess.kill();
     // electronProcess = null
+    // process.exit()
   }
-  electronProcess = spawn(electron, [path.join(ROOT, "dist/main.cjs")]);
+  electronProcess = spawn(electron, [path.join(ROOT, "dist/main.js")]);
   // electronProcess.stdout.on('data', (data) => {
   //   logger.info(data.toString(), defaultLogOptions)
   // })
@@ -49,6 +50,7 @@ function startElectron() {
   });
   electronProcess.on("close", (code) => {
     logger.info(`child process exited with code ${code}`, defaultLogOptions);
+    process.exit(code)
   });
 }
 

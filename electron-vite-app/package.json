@@ -2,7 +2,7 @@
   "name": "electron-vite-app",
   "private": true,
   "version": "1.0.0",
-  "main": "dist/main.cjs",
+  "main": "dist/main.js",
   "scripts": {
     "pack:win": "npm run pack --win",
     "pack:mac": "npm run pack --mac",

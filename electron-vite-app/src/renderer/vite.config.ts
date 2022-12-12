@@ -5,7 +5,7 @@ import * as path from 'path'
 
 // https://vitejs.dev/config/
 const ROOT = path.resolve(__dirname, '../../')
-const CHROME_VERSION = 100
+const CHROME_VERSION = 108
 
 export default defineConfig({
   root: __dirname,
