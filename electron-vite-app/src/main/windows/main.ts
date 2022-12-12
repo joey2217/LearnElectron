@@ -12,7 +12,7 @@ export function create() {
     },
   })
   if (import.meta.env.DEV) {
-    win.loadURL('http://localhost:3000')
+    win.loadURL('http://localhost:5174')
   } else {
     win.loadFile(path.join(__dirname, 'renderer/index.html'))
   }
