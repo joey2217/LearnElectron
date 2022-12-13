@@ -50,7 +50,9 @@ function startElectron() {
   });
   electronProcess.on("close", (code) => {
     logger.info(`child process exited with code ${code}`, defaultLogOptions);
-    process.exit(code)
+    if (code != null) {
+      process.exit(code)
+    }
   });
 }
 

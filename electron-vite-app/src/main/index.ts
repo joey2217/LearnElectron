@@ -8,6 +8,8 @@ import handleIPC from './ipc'
 
 const gotTheLock = app.requestSingleInstanceLock()
 
+app.applicationMenu = null
+
 if (!gotTheLock) {
   app.quit()
 } else {
@@ -23,9 +25,6 @@ if (!gotTheLock) {
 
 if (import.meta.env.DEV) {
   loadDevTools()
-}
-if (import.meta.env.PROD) {
-  app.applicationMenu = null
 }
 
 app.on('window-all-closed', function () {

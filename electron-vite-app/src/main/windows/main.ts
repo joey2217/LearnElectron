@@ -7,13 +7,12 @@ export function create() {
   win = new BrowserWindow({
     width: 800,
     height: 500,
-    show:false,
+    show: false,
     webPreferences: {
-      sandbox: false, // add this
-      preload: path.join(__dirname,'preload.js'),
+      preload: path.join(__dirname, 'preload.js'),
     },
   })
-  win.on('ready-to-show',()=>{
+  win.on('ready-to-show', () => {
     win.show()
   })
   if (import.meta.env.DEV) {
@@ -30,6 +29,6 @@ export function focus() {
   }
 }
 
-export function toggleDevtools(){
-  win.webContents.toggleDevTools()
+export function send(channel: string, ...args: any[]) {
+  win.webContents.send(channel, ...args)
 }

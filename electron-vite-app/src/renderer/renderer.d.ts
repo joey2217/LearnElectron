@@ -1,9 +1,13 @@
 interface IElectronAPI {
-  openAboutWindow: () =>  Promise<void>
+  openAboutWindow: () => Promise<void>
+  onMessage: (
+    callback: (event: Electron.IpcRendererEvent, message: string) => void
+  ) => Electron.IpcRenderer
+  sendMessageToMain: (message: string) => Promise<void>
 }
 
 interface IDevAPI {
-  toggleMainDevtools: () => Promise<void>
+  toggleDevtools: () => Promise<void>
 }
 
 declare global {

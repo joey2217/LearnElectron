@@ -5,10 +5,10 @@ let win: BrowserWindow = null!
 
 export function create() {
   win = new BrowserWindow({
-    width: 800,
-    height: 500,
+    width: 400,
+    height: 400,
     webPreferences: {
-      preload: path.join(__dirname,'preload.js'),
+      preload: path.join(__dirname, 'preload.js'),
     },
   })
   if (import.meta.env.DEV) {

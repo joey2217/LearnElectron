@@ -16,17 +16,15 @@ export default defineConfig(({ mode }) => {
       outDir: path.join(ROOT, 'dist'),
       emptyOutDir: true,
       minify: mode === 'development' ? false : 'esbuild',
-      lib: {
-        entry: {
+      rollupOptions: {
+        external: ['electron', ...builtinModules],
+        input: {
           main: path.join(__dirname, 'index.ts'),
           preload: path.join(__dirname, 'windows/preload.ts'),
         },
-        formats: ['cjs'],
-      },
-      rollupOptions: {
-        external: ['electron', ...builtinModules],
         output: {
           format: 'cjs',
+          entryFileNames: '[name].js',
         },
       },
     },
