@@ -54,7 +54,7 @@ app.on("window-all-closed", function () {
 app.whenReady().then(() => {
   const steamworks = require("steamworks.js");
   // steamworks.electronEnableSteamOverlay(true)
-  const client = steamworks.init();
+  const client = steamworks.init(2159840);
   // Print Steam username
   console.log(client.localplayer.getName());
   // Tries to activate an achievement
@@ -63,12 +63,12 @@ app.whenReady().then(() => {
   }
   client.input.init();
 
-  const actionset = client.input.getActionSet("Default");
+  const actionset = client.input.getActionSet("MenuControls");
 
-  const affirm = client.input.getDigitalAction("A");
-  const cancel = client.input.getDigitalAction("B");
-  const control = client.input.getAnalogAction("X");
-
+  const affirm = client.input.getDigitalAction("MenuUp");
+  const cancel = client.input.getDigitalAction("MenuDown");
+  const control = client.input.getAnalogAction("MenuLeft");           
+  console.log(`affirm:${affirm},cancel:${cancel},control:${control}`)
   setInterval(() => {
     console.clear();
 
@@ -77,7 +77,6 @@ app.whenReady().then(() => {
 
     controllers.forEach((controller) => {
       controller.activateActionSet(actionset);
-
       console.log("============");
       console.log("Affirm: " + controller.isDigitalActionPressed(affirm));
       console.log("Cancel: " + controller.isDigitalActionPressed(cancel));
